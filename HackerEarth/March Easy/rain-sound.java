@@ -1,9 +1,11 @@
+/*
+    author - astelThottankara ;)
+*/
+
 import java.util.*;
 
-class TestClass 
-{
-    public static void main(String args[] ) throws Exception 
-    {
+class TestClass {
+    public static void main(String args[] ) throws Exception {
         Scanner sc = new Scanner(System.in);
         int t = sc.nextInt();
         long l,r,s;
@@ -23,13 +25,14 @@ class TestClass
             }
             if(l%s==0)
                 min = l/s;
-            else if(l+s<r)
-                min = (l+s)/s;
-            else if(r%s==0)
-                min= r/s;
-
-            if(min!=-1)
-                max = r/s;    
+            else
+                min = l/s+1;
+            max = r/s;
+            if(min>max)
+            {    
+                min = -1;    
+                max = -1;
+            }
             System.out.println(min+" "+max);
         }
     }
