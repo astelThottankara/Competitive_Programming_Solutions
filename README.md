@@ -1,2 +1,2 @@
 # Competitive_Programming_Solutions
-Solutions Provided For Different Programming Contests
+Solutions Provided For Various Programming Contests Held Globally
