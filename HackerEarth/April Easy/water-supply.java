@@ -3,11 +3,10 @@
     author - astelThottankara
 
 */
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
- 
-class Solution 
+
+class TestClass 
 {
     public static void main(String args[] ) throws Exception 
     {
@@ -28,15 +27,21 @@ class Solution
         int max=-1;
         for(int j=0;j<n;j++)
         {
-            num=1;
+            left=1;
+            right=1;
             int a=j-1,b=j+1;
             while(b<n && block[b++]==0)
-                num++;
+                right++;
             while(a>=0 && block[a--]==0)
-                num++;
+                left++;
+            if(left>right)
+                num=left;
+            else
+                num = right;
             if(num>max)
                 max = num;
         }
         System.out.println(max);
     }
 }
+
