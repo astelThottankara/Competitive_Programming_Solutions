@@ -5,9 +5,20 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.lang.Math;
- 
+
 class TestClass 
 {
+    //Modular Exponentiation
+    static long expo(long base,long exponent,long mod)
+    {
+        if(exponent==0)
+            return 1;
+        else if(exponent%2 == 0)        
+            return expo((base*base)%mod,exponent/2,mod);
+        else                   
+            return (base*expo((base*base)%mod,(exponent-1)/2,mod))%mod;
+
+    }
     public static void main(String args[] ) throws Exception 
     {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -26,11 +37,10 @@ class TestClass
             term = (temp-3)/2;
             if(term>29)
             {
-                ways = (long)(Math.pow(2.0,28)%1000000007);
-                for(int i=29;i<=term;i++)
-                    ways = (ways*2)%1000000007;
+                ways = expo(2,28,1000000007);
+                ways = expo(2,term-28,1000000007);
             }
-            ways = (long)(Math.pow(2.0,(double)term)%1000000007);
+            ways = expo(2,term,1000000007);
             System.out.println(ways);
         }
     }
