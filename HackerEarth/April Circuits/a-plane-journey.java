@@ -24,51 +24,50 @@ class TestClass
             pw.println(-1);
         else
         {
-            boolean[] trip = new boolean[n];
-            Arrays.fill(trip,false);
-            int i=n-1,j=m-1,trips=0,temp=0;
-            boolean secondTrip = false;
-            while(true)
+            int i=n-1,j=m-1;
+            int trips=0,temp=0;
+            int source=m,destination=0;
+            int reached = 0;
+            boolean[] firstTrip = new boolean[m];
+            while(j>=0 && i>=0 && b[j]>=a[i])
             {
-                if(b[j]>=a[i] && trip[i]==false)
+                if(!firstTrip[j])
                 {
-                    trip[i] = true;
-                    j--;
+                    temp=1;
+                    reached++;
+                    firstTrip[j]=true;
                     i--;
-                    temp++;
+                    
+                    if(temp>trips)
+                        trips = temp;
+                    if(i>=0 && j>=1 && b[j-1]>=a[i])
+                    {
+                        if(temp>trips)
+                            trips = temp;
+                        j--;
+                    }   
+                    continue;
                 }
-                else if(b[j]>=a[i] && trip[i]==true)
+                if(i>=1 && j>=1 && b[j-1]>=a[i-1])
                 {
-                    i--;
-                }
-                else 
-                {
+                    if(temp>trips)
+                        trips = temp;
                     j--;
-                }
-
-                if(i==-1 || j==-1)
-                {
-                    if(secondTrip)
-                    {
-                        trips+=2;
-                        i=n-1;
-                        j=m-1;
-                    }
-                    else
-                    {
-                        secondTrip=true;
-                        trips++;
-                        i=n-1;
-                        j=m-1;
-                    }
-                }
-
-                if(temp==n)
-                {
-                    break;
                 }   
+                temp += 2;
+                i--;
+                reached++;
+                if(trips<temp)
+                    trips = temp;
+                if(j==0 && trips==temp)
+                    break;
+                 
             }
+            int remaining = n-reached;
+            if(remaining>0)
+                trips += 2*(remaining/m + 1);
             pw.println(trips);
+
         }
         pw.flush();
         pw.close();
