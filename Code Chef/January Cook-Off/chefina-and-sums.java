@@ -47,13 +47,6 @@ class CodeChef
         pw.flush();
         pw.close();
     }
-    
-    static long solve(long l,long r)
-    {
-        long sum=l;
-        
-        return sum;
-    }
 }
 
 class FastReader
